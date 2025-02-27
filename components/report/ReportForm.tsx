@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-// import { LocationInput } from "./LocationInput";
+import { LocationInput } from "./LocationInput";
 import crypto from "crypto";
 
 const REPORT_TYPES = [
@@ -295,7 +295,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
         </select>
       </div>
 
-      {/* // Location
+      {/* Location */}
       <LocationInput
         value={formData.location}
         onChange={(value) =>
@@ -307,7 +307,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
             longitude: lng,
           })
         }
-      /> */}
+      />
 
       {/* Title */}
       <div>
