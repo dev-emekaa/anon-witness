@@ -10,7 +10,7 @@ export default function HowItWorks() {
         <div className="absolute inset-0 h-full bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.04),transparent_70%)]" />
       </div>
 
-      <main className="relative px-6 pt-32 ">
+      <main className="relative px-6 pt-10 sm:pt-32 ">
         <div className="mx-auto max-w-5xl">
           {/* Header Section */}
           <div className="flex flex-col items-center text-center">

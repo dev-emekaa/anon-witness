@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     // <div className="relative min-h-screen bg-black selection:bg-sky-500/20 overflow-hidden">
-    <main className="relative px-6 pt-32">
+    <main className="relative px-6 pt-8 sm:pt-32">
       <div className="mx-auto max-w-5xl">
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center">
@@ -32,13 +32,13 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
-            Make your community safer without compromising your safety. Our
-            advanced encryption ensures your identity remains completely
-            anonymous.
+          <p className="mt-6 max-w-4xl text-lg leading-relaxed text-zinc-400">
+            Make your community safer without compromising your safety. Report
+            crime and incidents completely anonymously. Our advanced encryption
+            ensures your identity remains a secret.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 place-items-center">
             <Link href={"/submit-report"}>
               <button
                 type="button"
@@ -93,8 +93,8 @@ export default function Home() {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-40 rounded-2xl bg-zinc-900 p-8">
-          <div className="grid gap-y-8 sm:grid-cols-3">
+        <div className="mt-40 rounded-2xl bg-zinc-900 p-8 mx-auto max-w-lg">
+          <div className="grid gap-y-8 sm:grid-cols-2 ">
             {stats.map((stat, i) => (
               <div key={i} className="text-center">
                 <div className="text-3xl font-bold text-white">

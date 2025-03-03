@@ -13,11 +13,11 @@ export default function Navbar() {
           <div className="flex h-16 items-center justify-between">
             {/* Logo and Brand */}
             <div className="flex items-center space-x-3">
-              <Link href="/" className="flex items-center space-x-3">
-                <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-400 to-purple-600 flex items-center justify-center">
+              <Link href="/" className="flex items-center space-x-1 sm:space-x-3">
+                <div className=" h-6 w-6 sm:h-9 sm:w-9 rounded-xl bg-gradient-to-br from-sky-400 to-purple-600 flex items-center justify-center">
                  <img src="/eyeLogo.svg" alt="eye logo" />
                 </div>
-                <span className="text-lg font-semibold text-white">
+                <span className=" sm:text-lg font-semibold text-white">
                   AnonWitness
                 </span>
               </Link>
@@ -59,7 +59,7 @@ export default function Navbar() {
               >
                 Contact
               </Link>
-              <button className="group flex h-9 items-center gap-2 rounded-full bg-red-500/10 pl-4 pr-5 text-sm font-medium text-red-500 ring-1 ring-inset ring-red-500/20 transition-all hover:bg-red-500/20">
+              <button className="group flex h-9 items-center gap-2 rounded-full bg-red-500/10 pl-4 pr-5 text-xs sm:text-sm font-medium text-red-500 ring-1 ring-inset ring-red-500/20 transition-all hover:bg-red-500/20">
                 <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
                 Emergency: 112
               </button>
