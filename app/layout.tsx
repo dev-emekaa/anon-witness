@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
-// import { Providers } from "./providers";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,9 +12,9 @@ export const metadata: Metadata = {
     "AnonWitness - Anonymous Emergency Incident & Crime Reporting Platform",
   description:
     "Securely and anonymously report emergency incidents and crimes to law enforcement",
-    icons: {
-      icon: "/eyeLogo.svg"
-    }
+  icons: {
+    icon: "/eyeLogo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -33,8 +33,7 @@ export default function RootLayout({
           </div>
           <Navbar />
           <main className="pt-16">
-            {/* Providers */}
-            {children}
+            <Providers>{children}</Providers>
           </main>
         </div>
       </body>

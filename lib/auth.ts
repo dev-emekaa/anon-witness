@@ -1,12 +1,12 @@
 //@ts-nocheck
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
-import prisma from "@/lib/prisma";
 
-const handler = NextAuth({
-  adapter: PrismaAdapter(prisma),
+
+import { AuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import prisma from "./prisma";
+import bcrypt from "bcryptjs";
+
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -67,6 +67,4 @@ const handler = NextAuth({
   session: {
     strategy: "jwt",
   },
-});
-
-export { handler as GET, handler as POST };
+};
