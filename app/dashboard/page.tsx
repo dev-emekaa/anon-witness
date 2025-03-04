@@ -14,16 +14,31 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchReports();
+
+    return () => {
+      // Cleanup function runs when component unmounts
+      setReports([]);
+    };
   }, []);
 
   const fetchReports = async () => {
     setIsLoading(true);
     try {
       const response = await fetch("/api/reports");
+      if (!response.ok) {
+        // If unauthorized (during sign out), just set empty array
+        if (response.status === 401) {
+          setReports([]);
+          return;
+        }
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
       const data = await response.json();
-      setReports(data);
+      // Ensure data is an array before setting it
+      setReports(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Error fetching reports:", error);
+      setReports([]); // Always reset to empty array on error
     } finally {
       setIsLoading(false);
     }
@@ -50,11 +65,24 @@ export default function Dashboard() {
     }
   };
 
-  const filteredReports = reports.filter((report) => {
-    const statusMatch = filter === "ALL" || report.status === filter;
-    const typeMatch = typeFilter === "ALL" || report.type === typeFilter;
-    return statusMatch && typeMatch;
-  });
+  const filteredReports = Array.isArray(reports)
+    ? reports.filter((report) => {
+        const statusMatch = filter === "ALL" || report.status === filter;
+        const typeMatch = typeFilter === "ALL" || report.type === typeFilter;
+        return statusMatch && typeMatch;
+      })
+    : [];
+
+  const handleSignOut = async () => {
+    // Clear reports to prevent errors
+    setReports([]);
+
+    // Sign out with explicit redirect
+    await signOut({
+      callbackUrl: "/",
+      redirect: true,
+    });
+  };
 
   const getStatusColor = (status: ReportStatus) => {
     const colors = {
@@ -88,7 +116,7 @@ export default function Dashboard() {
                 {session?.user?.name || "Admin"}
               </span>
               <button
-                onClick={() => signOut()}
+                onClick={handleSignOut}
                 className="px-4 py-2 text-sm font-medium text-neutral-300 bg-neutral-900 rounded-lg hover:bg-neutral-800 border border-neutral-800 transition-all hover:border-neutral-700"
               >
                 Sign out
@@ -101,7 +129,8 @@ export default function Dashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8 flex flex-wrap gap-4 items-center justify-between">
           <div className="flex gap-4">
-            <select title="Filter by status"
+            <select
+              title="Filter by status"
               value={filter}
               onChange={(e) =>
                 setFilter(e.target.value as ReportStatus | "ALL")
@@ -116,7 +145,8 @@ export default function Dashboard() {
               ))}
             </select>
 
-            <select title="Filter by type"
+            <select
+              title="Filter by type"
               value={typeFilter}
               onChange={(e) =>
                 setTypeFilter(e.target.value as ReportType | "ALL")
@@ -188,7 +218,8 @@ export default function Dashboard() {
                     />
                   )}
                 </div>
-                <select title="Change Report Status"
+                <select
+                  title="Change Report Status"
                   value={report.status}
                   onChange={(e) =>
                     updateReportStatus(

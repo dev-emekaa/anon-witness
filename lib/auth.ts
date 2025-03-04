@@ -1,12 +1,14 @@
-//@ts-nocheck
+// @ts-nocheck
 
 
-import { AuthOptions } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import prisma from "./prisma";
 import bcrypt from "bcryptjs";
+import prisma from "@/lib/prisma";
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -63,6 +65,7 @@ export const authOptions: AuthOptions = {
   },
   pages: {
     signIn: "/auth/signin",
+    signOut: "/", // Add this to specify where to redirect after sign out
   },
   session: {
     strategy: "jwt",
