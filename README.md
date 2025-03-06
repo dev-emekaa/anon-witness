@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <br />
+    <a href="https://youtu.be/dGHFV_RMGag" target="_blank">
+      <img width="500" alt="PennySmart Banner" src="https://github.com/user-attachments/assets/89fba7ea-1b61-4151-aa17-3dc08275390f">
+    </a>
+  
+  <br />
 
-## Getting Started
+  <div>
+    <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
+    <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="javascript" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
+    <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="tailwindcss" />
+  </div>
 
-First, run the development server:
+  <h3 align="center">AnonWitness</h3>
+
+   <div align="center">
+      An AI-Powered Eye-Witness & Incident reporting platform.
+    </div>
+</div>
+
+## 📋 <a name="table">Table of Contents</a>
+
+1.  [About](#about)
+2.  [Tech Stack](#tech-stack)
+3.  [Features](#features)
+4.  [Quick Start](#quick-start)
+ 
+
+
+## <a name="about">About</a>
+
+AnonWitness is an AI-Powered Eye-Witness & Incident reporting platform that enables users to anonymously submit eye-witness updates and exact location on crimes and emergency situations.
+
+
+## <a name="tech-stack">Tech Stack</a>
+
+- Next.js
+- TypeScript
+- NextAuth for Authentication
+- Neon PostgreSQL database
+- Prisma
+- React Hook Form
+- Tailwind CSS
+- Shadcn-ui
+- GeminiAI
+- Bcrypt for Password Encryption
+
+## <a name="features">Features</a>
+
+-  **Anonymous Reporting**: Report Incidents without revealing Your Identity.
+
+- **Precise Location**: Share accurate incident location by just the tap of a button.
+
+- **Live Photo Upload**: Capture and Share Images directly from the scene.
+
+- **AI Genrated Captions**: AI scans images, and generates precise incident descriptions and captions.
+  
+- **Progress Tracking**: Monitor submitted reports and their progress.
+  
+- **Secure Communication**: Two-way secure communication channel with law enforcement.
+
+## <a name="quick-start"> Quick Start</a>
+
+Follow these steps to set up the project locally on your machine.
+
+**Prerequisites**
+
+Make sure you have the following installed on your machine:
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en)
+- [npm](https://www.npmjs.com/) (Node Package Manager)
+
+**Cloning the Repository**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/techy-savant/PennySmart
+cd PennySmart
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Installation**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd anonymous-reporting-system
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Install dependencies
+npm install
 
-## Learn More
+# Set up the database
+npx prisma generate
+npx prisma db push
 
-To learn more about Next.js, take a look at the following resources:
+# Start the development server
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Environment Setup**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create a `.env` file in the root directory with the following variables:
 
-## Deploy on Vercel
+```env
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+NEXT_PUBLIC_MAPBOX_API_KEY=your-mapbox-key
+DATABASE_URL=postgresql:your-database-url
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000/api/auth"
+GEMINI_API_KEY=your-gemini-api-key
+NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your-mapbox-access-api-key
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+```
+
+**Deployment**
+
+The application can be easily deployed on [Vercel](https://vercel.com):
+
+1. Push your code to a Git repository
+2. Connect your repository to Vercel
+3. Configure the environment variables
+4. Deploy!
