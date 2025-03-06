@@ -83,9 +83,6 @@ cd anon-witness
 **Installation**
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd anonymous-reporting-system
 
 # Install dependencies
 npm install
