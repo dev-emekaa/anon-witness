@@ -1,17 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 
 const prisma = new PrismaClient();
 
-// Using type from Next.js for route handlers
-type RouteParams = {
-  params: {
-    reportId: string;
-  };
-};
+interface ReportParams {
+  reportId: string;
+}
 
-export async function GET(request: Request, { params }: RouteParams) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: ReportParams }
+) {
   try {
     const report = await prisma.report.findUnique({
       where: {
@@ -33,7 +33,10 @@ export async function GET(request: Request, { params }: RouteParams) {
   }
 }
 
-export async function PATCH(request: Request, { params }: RouteParams) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: ReportParams }
+) {
   try {
     const session = await getServerSession();
     if (!session) {
