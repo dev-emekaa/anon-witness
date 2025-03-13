@@ -4,14 +4,18 @@ import { getServerSession } from "next-auth";
 
 const prisma = new PrismaClient();
 
-export async function GET(
-  request: Request,
-  context: { params: { reportId: string } }
-) {
+// Using type from Next.js for route handlers
+type RouteParams = {
+  params: {
+    reportId: string;
+  };
+};
+
+export async function GET(request: Request, { params }: RouteParams) {
   try {
     const report = await prisma.report.findUnique({
       where: {
-        reportId: context.params.reportId,
+        reportId: params.reportId,
       },
     });
 
@@ -29,10 +33,7 @@ export async function GET(
   }
 }
 
-export async function PATCH(
-  request: Request,
-  context: { params: { reportId: string } }
-) {
+export async function PATCH(request: Request, { params }: RouteParams) {
   try {
     const session = await getServerSession();
     if (!session) {
@@ -41,7 +42,7 @@ export async function PATCH(
 
     const { status } = await request.json();
     const report = await prisma.report.update({
-      where: { reportId: context.params.reportId },
+      where: { reportId: params.reportId },
       data: { status },
     });
 
