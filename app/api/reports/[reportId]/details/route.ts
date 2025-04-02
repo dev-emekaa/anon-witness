@@ -6,9 +6,17 @@ const prisma = new PrismaClient();
 
 export async function GET(
   request: Request,
-  { params }: { params: { reportId: string } }
+  { params }: { params: { reportId: string | string[] } }
 ) {
   try {
+    // Validate parameter type
+    if (Array.isArray(params.reportId)) {
+      return NextResponse.json(
+        { error: "Invalid report ID format" }, 
+        { status: 400 }
+      );
+    }
+
     const report = await prisma.report.findUnique({
       where: {
         reportId: params.reportId,
@@ -28,6 +36,7 @@ export async function GET(
     );
   }
 }
+
 
 export async function PATCH(
   request: Request,
