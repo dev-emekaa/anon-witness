@@ -1,11 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 
 const prisma = new PrismaClient();
 
+// Updated type definition for route handlers
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { reportId: string } }
 ) {
   try {
@@ -30,7 +31,7 @@ export async function GET(
 }
 
 export async function PATCH(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { reportId: string } }
 ) {
   try {
