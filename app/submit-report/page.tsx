@@ -1,10 +1,4 @@
-import dynamic from 'next/dynamic';
-
-// Import the component dynamically with ssr: false
-const ReportWizard = dynamic(
-  () => import('@/components/report/ReportWizard').then(mod => mod.ReportWizard),
-  { ssr: false }
-);
+import { ClientReportWizard } from "@/components/report/ClientReportWizard";
 
 export default function SubmitReport() {
   return (
@@ -46,7 +40,7 @@ export default function SubmitReport() {
           </div>
 
           <div className="mt-16 bg-zinc-900/50 rounded-2xl border border-white/5 p-6">
-            <ReportWizard />
+            <ClientReportWizard />
           </div>
         </div>
       </main>
